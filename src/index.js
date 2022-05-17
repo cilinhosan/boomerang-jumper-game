@@ -4,9 +4,8 @@ import InGameScene from './InGameScene';
 
 const config = {
     type: Phaser.AUTO,
-    //see how to scale game
 
-    scale :{
+    scale: {
         width: 800,
         height: 600,
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
