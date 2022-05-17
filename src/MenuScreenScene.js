@@ -11,6 +11,7 @@ class MenuScreenScene extends Phaser.Scene {
 
         this.input.on('pointerdown', () => {
             this.scene.start('InGameScene');
+
         }, this);
     }
 }

@@ -17,7 +17,6 @@ class InGameScene extends Phaser.Scene {
         this.platform;
         this.score = 0;
         this.scoreText;
-        this.gameOver = false;
         this.boomerangGroup;
         this.playerDeadFlag = false;
         this.delayCount = 0;
@@ -27,6 +26,7 @@ class InGameScene extends Phaser.Scene {
         this.maxEnemiesAtFront = 3;
         this.enemyFrontSpawnDelayCount = 60;
         this.enemyBackSpawnDelayCount = 60;
+        this.restartGameFlag = false;
     }
 
     preload() {
@@ -107,10 +107,6 @@ class InGameScene extends Phaser.Scene {
             this.delayCount = this.delayCount - 1;
         }
 
-        if (this.gameOver) {
-            return;
-        }
-
         if (this.keyW.isDown && this.player.body.touching.down) {
             this.player.setVelocityY(-850);
         }
@@ -124,6 +120,18 @@ class InGameScene extends Phaser.Scene {
                 }
             }
         }
+
+    }
+
+    restartGame(){
+        this.score = 0;
+
+        this.restartGameFlag = false;
+        //reset game state
+
+        this.playerDeadFlag = false;
+        this.scene.start("MenuScreenScene");
+
     }
 
     spawnBoomerang() {
@@ -178,6 +186,9 @@ class InGameScene extends Phaser.Scene {
         this.player.disableBody(true, true);
         //set this to true when lifes are over
         this.playerDeadFlag = true;
+        this.restartGameFlag = true;
+        this.restartGame();
+
     }
 
     increaseScore(){

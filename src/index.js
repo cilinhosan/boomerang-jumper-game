@@ -5,8 +5,13 @@ import InGameScene from './InGameScene';
 const config = {
     type: Phaser.AUTO,
     //see how to scale game
-    width: 800,
-    height: 600,
+
+    scale :{
+        width: 800,
+        height: 600,
+        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
+    },
+
     physics: {
         default: 'arcade',
         arcade: {
